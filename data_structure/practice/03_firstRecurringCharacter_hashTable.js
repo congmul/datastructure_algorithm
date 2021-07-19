@@ -29,13 +29,13 @@ const firstRecurringCharacter = (arr) => {
     // return first key of the object.
     return hashTable[Object.keys(hashTable)[0]];
 
-    // for (let i = 0; i < arr.length; i++){  // O(n)
-    //     if(!hashTable[arr[i]]){
-    //         hashTable[arr[i]] = true;
-    //     }else{
-    //         return arr[i];
-    //     }
-    // }
+    for (let i = 0; i < arr.length; i++){  // O(n)
+        if(!hashTable[arr[i]]){
+            hashTable[arr[i]] = true;
+        }else{
+            return arr[i];
+        }
+    }
 
     return undefined;
 }
