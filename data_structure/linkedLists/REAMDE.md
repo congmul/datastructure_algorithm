@@ -13,6 +13,10 @@ lookup O(n)
 insert O(n)
 delete O(n)
 ```
+### Memory Efficiency
+- This is useful when there is uncertainty about size or there are large variations in the size of data elements; memory equivalent to the upper limit on the size has to be allocated (even if not all of it is being used) while using arrays, whereas linked lists can increase their sizes step-by-step proportionately to the amount of data.
+
+
 ### pseudocode
 ```
 Linked list : apples --> grapes --> pears
