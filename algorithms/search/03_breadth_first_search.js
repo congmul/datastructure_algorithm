@@ -1,3 +1,16 @@
+// O(n)
+// Track all nodes from left node to right node.
+
+// Pros: Shortest Path between a starting point and any other rechable node.
+// Cons: More memry than depth_first_search
+
+//      9
+//   4     20
+// 1  6  15  170
+
+// BFS => [9, 4, 20, 1, 6, 15, 170]
+
+
 class Node {
     constructor(value) {
         this.left = null;
@@ -143,25 +156,62 @@ class BinarySearchTree {
         }
       }
 
+    breadthFirstSearch() {
+        let currentNode = this.root;
+        let list = [];
+        let queue = [];
+
+        queue.push(currentNode)
+
+        while(queue.length > 0){
+            currentNode = queue.shift();
+
+            list.push(currentNode.value);
+
+            if(currentNode.left){
+                queue.push(currentNode.left);
+            }
+
+            if(currentNode.right){
+                queue.push(currentNode.right)
+            }
+
+        }
+
+        return list;
+    }
+    
+    breadthFirstSearchRecursive(queue, list){
+        if(!queue.length) {
+            return list;
+        }
+        let currentNode = queue.shift();
+        list.push(currentNode.value);
+        if(currentNode.left){
+            queue.push(currentNode.left);
+        }
+        if(currentNode.right){
+            queue.push(currentNode.right);
+        }
+
+        return this.breadthFirstSearchRecursive(queue, list);
+    }
 }
 
 const tree = new BinarySearchTree();
-console.log(tree.insert(9));
+tree.insert(9);
 tree.insert(4);
 tree.insert(6);
 tree.insert(20);
 tree.insert(170);
 tree.insert(15);
 tree.insert(1);
-// console.log(tree.lookup(20));
-// tree.remove(20)
-// tree.remove(170)
-// tree.remove(15)
-// tree.remove(1)
-console.log(JSON.stringify(traverse(tree.root)))
+
 //       9
 //   4      20
 // 1   6  15  170
+console.log(tree.breadthFirstSearch());
+console.log(tree.breadthFirstSearchRecursive([tree.root], []));
 
 function traverse(node) {
     const tree = { value: node.value };
@@ -171,3 +221,5 @@ function traverse(node) {
     traverse(node.right);
     return tree;
 }
+
+

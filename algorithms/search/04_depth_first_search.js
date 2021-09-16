@@ -1,3 +1,16 @@
+// O(n)
+// All the way down nodes and come back up and All the way down nodes...
+
+// Pros: Lower memory requirement than Breadth First Search
+// Cons: it can get slow
+
+//      9
+//   4     20
+// 1  6  15  170
+
+// DFS => [9, 4, 1, 6, 20, 15, 170]
+
+
 class Node {
     constructor(value) {
         this.left = null;
@@ -143,31 +156,23 @@ class BinarySearchTree {
         }
       }
 
+    depthFirstSearchInorder() {
+        
+    }
 }
 
+//      9
+//   4     20
+// 1  6  15  170
+// InOrder - [1, 4, 6, 9, 15, 20, 170]
+// PreOrder - [9, 4, 1, 6, 20, 15, 170]
+// PostOrder - [1, 6, 4, 15, 170, 20, 9]
+
 const tree = new BinarySearchTree();
-console.log(tree.insert(9));
+tree.insert(9);
 tree.insert(4);
 tree.insert(6);
 tree.insert(20);
 tree.insert(170);
 tree.insert(15);
 tree.insert(1);
-// console.log(tree.lookup(20));
-// tree.remove(20)
-// tree.remove(170)
-// tree.remove(15)
-// tree.remove(1)
-console.log(JSON.stringify(traverse(tree.root)))
-//       9
-//   4      20
-// 1   6  15  170
-
-function traverse(node) {
-    const tree = { value: node.value };
-    tree.left = node.left === null ? null :
-    traverse(node.left);
-    tree.right = node.right === null ? null :
-    traverse(node.right);
-    return tree;
-}
